@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "PDF Analysis Schema",
+    "description": "Schema for the extracted title and outline of a PDF document.",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "The extracted title of the document"
+        },
+        "outline": {
+            "type": "array",
+            "description": "An array of section headings in the document",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "description": "The text of the heading"
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "The page number where the heading appears (1-based index)"
+                    },
+                    "level": {
+                        "type": "integer",
+                        "description": "The heading level (1 for top-level sections, increasing for sub-sections)"
+                    }
+                },
+                "required": [
+                    "text",
+                    "page",
+                    "level"
+                ]
+            }
+        },
+        "error": {
+            "type": "string",
+            "description": "Error message, if any occurred during processing",
+            "nullable": true
+        }
+    },
+    "required": [
+        "title",
+        "outline"
+    ],
+    "additionalProperties": false
+}
